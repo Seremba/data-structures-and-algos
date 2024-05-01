@@ -44,6 +44,20 @@ public class SinglyLinkedList {
 		newNode.next = head;
 		head = newNode;
 	}
+	// insert node at the end of linkedlist
+	public void insertLast(int value) {
+		ListNode newNode = new ListNode(value);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		ListNode current = head;
+		
+		while(null != current.next) {
+			current = current.next;
+		}
+		current.next = newNode;
+	}
 	// connect nodes
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
@@ -54,10 +68,10 @@ public class SinglyLinkedList {
 //		ssl.head.next = second;
 //		second.next = third;
 //		third.next = forth;
-		ssl.insertFirst(11);
-		ssl.insertFirst(8);
-		ssl.insertFirst(1);
-		ssl.insertFirst(12);
+		ssl.insertLast(15);
+		ssl.insertLast(8);
+		ssl.insertLast(1);
+		ssl.insertLast(12);
 		ssl.display(); // display node values
 		int len = ssl.length();
 		System.out.println("The length of singly linked list is \n" + len);

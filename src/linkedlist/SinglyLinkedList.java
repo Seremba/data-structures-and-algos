@@ -86,6 +86,21 @@ public class SinglyLinkedList {
 		temp.next = null;
 		return temp;
 	}
+	// delete the last node from the linked list
+	public ListNode deleteLast() {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		ListNode current = head;
+		ListNode previous = null;
+		
+		while (current.next != null) {
+			previous = current;
+			current = current.next;
+		}
+		previous.next = null;
+		return current;
+	}
 	// connect nodes
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
@@ -94,7 +109,7 @@ public class SinglyLinkedList {
 		ssl.insert(1,10);
 		
 		ssl.display();
-		System.out.println(ssl.deleteFirst().data);
+		System.out.println(ssl.deleteLast().data);
 		ssl.display();
 	}
 }

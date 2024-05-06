@@ -176,15 +176,34 @@ public class SinglyLinkedList {
 		}
 		return mainPointer;
 	}
+	// how to remove duplicates from sorted linked list
+	public void removeDuplicates() {
+		if (head == null) {
+			return;
+		}
+		ListNode current = head;
+		while (current != null && current.next != null) {
+			if (current.data == current.next.data) {
+				current.next = current.next.next;
+			} else {
+				current = current.next;
+			}
+		}
+	}
 	// connect nodes
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
+		ssl.insertFirst(2);
+		ssl.insertFirst(2);
+		ssl.insertFirst(3);
+		ssl.insertFirst(3);
 		ssl.insertFirst(5);
-		ssl.insertFirst(13);
-		ssl.insertFirst(22);
-		ssl.insertFirst(20);
+		ssl.insertFirst(5);
+		ssl.insertFirst(6);
+		ssl.insertFirst(6);
 		
-		ListNode node = ssl.getNthNodeFromEnd(2);
-		System.out.println(node.data);
+		ssl.display(ssl.head);
+		ssl.removeDuplicates();
+		ssl.display(ssl.head);
 	}
 }

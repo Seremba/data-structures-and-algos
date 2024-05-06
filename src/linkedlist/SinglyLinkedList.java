@@ -148,20 +148,43 @@ public class SinglyLinkedList {
 		}
 		return  previous;
 	}
+	// how to find nth node from the end of a linked list
+	public ListNode getNthNodeFromEnd(int n) {
+		if (head == null) {
+			return null;
+		}
+		
+		if (n <= 0) {
+			throw new IllegalArgumentException("Invalid value: n = " + n);
+		}
+		ListNode mainPointer = head;
+		ListNode referencePointer = head;
+		
+		int count = 0;
+		
+		while (count < n) {
+			if (referencePointer == null) {
+				throw new IllegalArgumentException(n + "is greater than the number of ref nodes");
+			}
+			referencePointer = referencePointer.next;
+			count++;
+		}
+		
+		while (referencePointer != null) {
+			referencePointer = referencePointer.next;
+			mainPointer = mainPointer.next;
+		}
+		return mainPointer;
+	}
 	// connect nodes
 	public static void main(String[] args) {
-		ListNode head = new ListNode(10);
-		ListNode second = new ListNode(8);
-		ListNode third = new ListNode(1);
-		ListNode fourth = new ListNode(11);
-		
-		head.next = second;
-		second.next = third;
-		third.next = fourth;
-		
 		SinglyLinkedList ssl = new SinglyLinkedList();
-		ssl.display(head);
-		ListNode reverseListNode = ssl.reverse(head);
-		ssl.display(reverseListNode);
+		ssl.insertFirst(5);
+		ssl.insertFirst(13);
+		ssl.insertFirst(22);
+		ssl.insertFirst(20);
+		
+		ListNode node = ssl.getNthNodeFromEnd(2);
+		System.out.println(node.data);
 	}
 }

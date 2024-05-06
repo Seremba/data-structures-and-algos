@@ -29,7 +29,7 @@ public class SinglyLinkedList {
 		return count;
 	}
 	// print node values
-	public void display() {
+	public void display(ListNode head) {
 		ListNode current = head;
 		while (current != null) {
 			System.out.print(current.data + " --> ");
@@ -131,19 +131,37 @@ public class SinglyLinkedList {
 		}
 		return false;
 	}
-	
+	// how to reverse a singly linked list in Java
+	public ListNode reverse (ListNode head) {
+		if (head == null) {
+			return null;
+		}
+		ListNode current = head;
+		ListNode previous = null;
+		ListNode next = null;
+		
+		while (current != null) {
+			next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+		}
+		return  previous;
+	}
 	// connect nodes
 	public static void main(String[] args) {
-		SinglyLinkedList ssl = new SinglyLinkedList();
-		ssl.insert(1, 2);
-		ssl.insert(2, 7);
-		ssl.insert(3,10);
-		ssl.insert(4, 13);
+		ListNode head = new ListNode(10);
+		ListNode second = new ListNode(8);
+		ListNode third = new ListNode(1);
+		ListNode fourth = new ListNode(11);
 		
-		if (ssl.find(ssl.head, 7)) {
-			System.out.println("Search key found!!!");
-		} else {
-			System.out.println("Search key not found!!!");
-		}
+		head.next = second;
+		second.next = third;
+		third.next = fourth;
+		
+		SinglyLinkedList ssl = new SinglyLinkedList();
+		ssl.display(head);
+		ListNode reverseListNode = ssl.reverse(head);
+		ssl.display(reverseListNode);
 	}
 }

@@ -116,6 +116,22 @@ public class SinglyLinkedList {
 			prev.next = current.next;
 		}
 	}
+	// how to for a node search in a linkedlist in java
+	public boolean find(ListNode head, int searchKey) {
+		if (head == null) {
+			return false;
+		}
+		ListNode current = head;
+		
+		while (current != null) {
+			if (current.data == searchKey) {
+				return true;
+			}
+			current = current.next;
+		}
+		return false;
+	}
+	
 	// connect nodes
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
@@ -123,10 +139,11 @@ public class SinglyLinkedList {
 		ssl.insert(2, 7);
 		ssl.insert(3,10);
 		ssl.insert(4, 13);
-		ssl.display();
-		ssl.delete(1);
-		ssl.delete(1);
-		ssl.delete(2);
-		ssl.display();
+		
+		if (ssl.find(ssl.head, 7)) {
+			System.out.println("Search key found!!!");
+		} else {
+			System.out.println("Search key not found!!!");
+		}
 	}
 }

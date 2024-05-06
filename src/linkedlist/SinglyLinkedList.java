@@ -101,15 +101,32 @@ public class SinglyLinkedList {
 		previous.next = null;
 		return current;
 	}
+	// delete a node  from a singly linked list at a position
+	public void delete(int position) {
+		if (position == 1) {
+			head = head.next;
+		} else {
+			ListNode prev = head;
+			int count = 1;
+			while (count < position - 1) {
+			  prev = prev.next;
+			  count++;
+			}
+			ListNode current = prev.next;
+			prev.next = current.next;
+		}
+	}
 	// connect nodes
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
 		ssl.insert(1, 2);
 		ssl.insert(2, 7);
-		ssl.insert(1,10);
-		
+		ssl.insert(3,10);
+		ssl.insert(4, 13);
 		ssl.display();
-		System.out.println(ssl.deleteLast().data);
+		ssl.delete(1);
+		ssl.delete(1);
+		ssl.delete(2);
 		ssl.display();
 	}
 }

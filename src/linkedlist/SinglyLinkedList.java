@@ -227,6 +227,22 @@ public class SinglyLinkedList {
 		
 		temp.next = current.next;
 	}
+	// detect a loop in a linked list in java
+	public boolean containsLoop() {
+		ListNode fastPointer = head;
+		ListNode slowPointer = head;
+		
+		while (fastPointer != null && fastPointer.next != null) {
+			fastPointer = fastPointer.next.next;
+			slowPointer = slowPointer.next;
+			
+			if (slowPointer == fastPointer) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
 		ssl.insertFirst(16);

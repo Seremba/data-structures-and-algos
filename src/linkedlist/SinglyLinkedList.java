@@ -243,16 +243,27 @@ public class SinglyLinkedList {
 		
 		return false;
 	}
+	// create a loop in a linked list
+	public void createALoopInLinkedList() {
+		ListNode first = new ListNode(1);
+		ListNode second = new ListNode(2);
+		ListNode third = new ListNode(3);
+		ListNode fourth = new ListNode(4);
+		ListNode fifth = new ListNode(5);
+		ListNode sixth = new ListNode(6);
+		
+		head = first;
+		first.next = second;
+		second.next = third;
+		third.next = fourth;
+		fourth.next = fifth;
+		fifth.next = sixth;
+		sixth.next = third; // loop
+		
+	}
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
-		ssl.insertFirst(16);
-		ssl.insertFirst(10);
-		ssl.insertFirst(8);
-		ssl.insertFirst(1);
-		
-		ssl.insertInSortedList(11);
-		ssl.display(ssl.head);
-		ssl.deleteNode(10);
-		ssl.display(ssl.head);
+		ssl.createALoopInLinkedList();
+		System.out.println(ssl.containsLoop());
 	}
 }

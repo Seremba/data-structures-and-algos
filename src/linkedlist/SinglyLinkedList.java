@@ -261,6 +261,33 @@ public class SinglyLinkedList {
 		sixth.next = third; // loop
 		
 	}
+	
+	// how to find the start of a loop in a singly linked list(Floyd cycle detection)
+	public ListNode startNodeInALoop() {
+		ListNode fastPointer = head;
+		ListNode slowPointer = head;
+		
+		while (fastPointer != null && fastPointer.next != null) {
+			fastPointer = fastPointer.next.next;
+			slowPointer = slowPointer.next;
+			
+			if (slowPointer == fastPointer) {
+				return getStartingNode(slowPointer);
+			}
+		}
+		
+		return null;
+	}
+	
+	private ListNode getStartingNode(ListNode slowPointer) {
+		ListNode temp = head;
+		while (temp != slowPointer) {
+			temp = temp.next;
+			slowPointer =slowPointer.next;
+		}
+		return temp; // starting node of the loop
+	}
+	
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
 		ssl.createALoopInLinkedList();

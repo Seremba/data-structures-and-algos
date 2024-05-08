@@ -29,7 +29,7 @@ public class SinglyLinkedList {
 		return count;
 	}
 	// print node values
-	public void display(ListNode head) {
+	public void display() {
 		ListNode current = head;
 		while (current != null) {
 			System.out.print(current.data + " --> ");
@@ -287,10 +287,38 @@ public class SinglyLinkedList {
 		}
 		return temp; // starting node of the loop
 	}
+	// how to remove a loop from a singly linked list
+	public void removeLoop() {
+		ListNode fastPointer = head;
+		ListNode slowPointer = head;
+		
+		while (fastPointer != null && fastPointer.next != null) {
+			fastPointer = fastPointer.next.next;
+			slowPointer = slowPointer.next;
+			
+			if (slowPointer == fastPointer) {
+				 removeLoop(slowPointer);
+				return;
+			}
+		}
+		
+	}
+	
+	private void removeLoop(ListNode slowPointer) {
+		ListNode temp = head;
+		while (temp.next != slowPointer.next) {
+			temp = temp.next;
+			slowPointer =slowPointer.next;
+		}
+		slowPointer.next = null;
+	}
 	
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
 		ssl.createALoopInLinkedList();
 		System.out.println(ssl.containsLoop());
+		System.out.println(ssl.startNodeInALoop().data);
+		ssl.removeLoop();
+		ssl.display();
 	}
 }

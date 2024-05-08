@@ -116,7 +116,7 @@ public class SinglyLinkedList {
 			prev.next = current.next;
 		}
 	}
-	// how to for a node search in a linkedlist in java
+	// how to search for a node in a singly linked list in java
 	public boolean find(ListNode head, int searchKey) {
 		if (head == null) {
 			return false;
@@ -176,7 +176,7 @@ public class SinglyLinkedList {
 		}
 		return mainPointer;
 	}
-	// how to remove duplicates from sorted linked list
+	// how to remove duplicates from SORTED linked list
 	public void removeDuplicates() {
 		if (head == null) {
 			return;
@@ -190,20 +190,36 @@ public class SinglyLinkedList {
 			}
 		}
 	}
-	// connect nodes
+	// insert a node in a SORTED singly linked list
+	public ListNode insertInSortedList(int value) {
+		ListNode newNode = new ListNode(value);
+		if (head == null) {
+			return newNode;
+		}
+		
+		ListNode current = head;
+		ListNode temp = null;
+		
+		while(current != null && current.data < newNode.data) {
+			temp = current;
+			current = current.next;
+		}
+		newNode.next = current;
+		temp.next = newNode;
+		return head;
+	}
+	
 	public static void main(String[] args) {
 		SinglyLinkedList ssl = new SinglyLinkedList();
-		ssl.insertFirst(2);
-		ssl.insertFirst(2);
-		ssl.insertFirst(3);
-		ssl.insertFirst(3);
-		ssl.insertFirst(5);
-		ssl.insertFirst(5);
-		ssl.insertFirst(6);
-		ssl.insertFirst(6);
+		ssl.insertFirst(16);
+		ssl.insertFirst(10);
+		ssl.insertFirst(8);
+		ssl.insertFirst(1);
+		
 		
 		ssl.display(ssl.head);
-		ssl.removeDuplicates();
+		ssl.insertInSortedList(11);
 		ssl.display(ssl.head);
+	
 	}
 }

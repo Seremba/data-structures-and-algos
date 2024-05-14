@@ -312,13 +312,51 @@ public class SinglyLinkedList {
 		}
 		slowPointer.next = null;
 	}
+	// merge two sorted linked lists
+	public static ListNode merge(ListNode a, ListNode b) {
+		ListNode dummy = new ListNode(0);
+		ListNode tail = dummy;
+		
+		while (a != null && b != null) {
+			if (a.data <= b.data) {
+				tail.next = a;
+				a = a.next;
+			} else {
+				tail.next = b;
+				b = b.next;
+			}
+			tail = tail.next;
+		}
+		
+		if (a == null) {
+			tail.next = b;
+		} else {
+			tail.next = a;
+		}
+		
+		return dummy.next;
+	}
 	
 	public static void main(String[] args) {
-		SinglyLinkedList ssl = new SinglyLinkedList();
-		ssl.createALoopInLinkedList();
-		System.out.println(ssl.containsLoop());
-		System.out.println(ssl.startNodeInALoop().data);
-		ssl.removeLoop();
-		ssl.display();
+		SinglyLinkedList ssl1 = new SinglyLinkedList();
+		ssl1.insertLast(1);
+		ssl1.insertLast(4);
+		ssl1.insertLast(8);
+		
+		SinglyLinkedList ssl2 = new SinglyLinkedList();
+		ssl2.insertLast(3);
+		ssl2.insertLast(5);
+		ssl2.insertLast(8);
+		ssl1.insertLast(9);
+		ssl1.insertLast(14);
+		ssl1.insertLast(18);
+		
+		ssl2.display();
+		ssl1.display();
+		
+		SinglyLinkedList result = new SinglyLinkedList();
+		result.head = merge(ssl1.head, ssl2.head);
+		
+		result.display();
 	}
 }

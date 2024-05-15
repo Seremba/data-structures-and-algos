@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.NoSuchElementException;
+
 public class DoublyLinkedList {
 	private ListNode head;
 	private ListNode tail;
@@ -78,6 +80,25 @@ public class DoublyLinkedList {
 		tail = newNode;
 		length++;
 	}
+	
+	// how to delete first node in a doubly linked list
+	public ListNode deleteFirst() {
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		
+		ListNode temp = head;
+		if (head == tail) {
+			tail = null;
+		}else {
+			head.next.previous = null;
+			
+		}
+		head = head.next;
+		temp.next = null;
+		length--;
+		return temp;
+	}
 	public static void main(String[] args) {
 		DoublyLinkedList ddl = new DoublyLinkedList();
 		ddl.insertLast(1);
@@ -86,7 +107,8 @@ public class DoublyLinkedList {
 		ddl.insertLast(20);
 		
 		ddl.displayForward();
+		ddl.deleteFirst();
 		System.out.println();
-		ddl.displayBackward();
+		ddl.displayForward();
 	}
 }

@@ -66,12 +66,24 @@ public class DoublyLinkedList {
 		head = newNode;
 		length++;
 	}
+	// how to insert node at the end of a doubly linked list
+	public void insertLast(int value) {
+		ListNode newNode = new ListNode(value);
+		if (isEmpty()) {
+			head = newNode;
+		} else {
+			tail.next = newNode;
+			newNode.previous = tail;
+		}
+		tail = newNode;
+		length++;
+	}
 	public static void main(String[] args) {
 		DoublyLinkedList ddl = new DoublyLinkedList();
-		ddl.insertFirst(1);
-		ddl.insertFirst(12);
-		ddl.insertFirst(15);
-		ddl.insertFirst(20);
+		ddl.insertLast(1);
+		ddl.insertLast(12);
+		ddl.insertLast(15);
+		ddl.insertLast(20);
 		
 		ddl.displayForward();
 		System.out.println();

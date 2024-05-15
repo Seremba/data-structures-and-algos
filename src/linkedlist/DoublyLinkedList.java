@@ -28,4 +28,34 @@ public class DoublyLinkedList {
 	public int length() {
 		return length;
 	}
+	
+	// how to print elements of a doubly linked list
+	public void displayForward() {
+		if (head == null) {
+			return;
+		}
+		ListNode temp = head;
+		
+		while (temp != null) {
+			System.out.print(temp.data + " ->");
+			temp = temp.next ;
+		}
+		System.out.print("null");
+	}
+	public void displayBackward() {
+		if (tail == null) {
+			return;
+		}
+		ListNode temp = tail;
+		
+		while (temp != null) {
+			System.out.print(temp.data + " ->");
+			temp = temp.previous;
+		}
+		System.out.print("null");
+	}
+	
+	public static void main(String[] args) {
+	
+	}
 }

@@ -37,7 +37,7 @@ public class DoublyLinkedList {
 		ListNode temp = head;
 		
 		while (temp != null) {
-			System.out.print(temp.data + " ->");
+			System.out.print(temp.data + " -> ");
 			temp = temp.next ;
 		}
 		System.out.print("null");
@@ -49,13 +49,32 @@ public class DoublyLinkedList {
 		ListNode temp = tail;
 		
 		while (temp != null) {
-			System.out.print(temp.data + " ->");
+			System.out.print(temp.data + " -> ");
 			temp = temp.previous;
 		}
 		System.out.print("null");
 	}
-	
+	// how to insert node at the beginning of a doubly linked list
+	public void insertFirst(int value) {
+		ListNode newNode = new ListNode(value);
+		if (isEmpty()) {
+			tail = newNode;
+		} else {
+			head.previous = newNode;
+		}
+		newNode.next = head;
+		head = newNode;
+		length++;
+	}
 	public static void main(String[] args) {
-	
+		DoublyLinkedList ddl = new DoublyLinkedList();
+		ddl.insertFirst(1);
+		ddl.insertFirst(12);
+		ddl.insertFirst(15);
+		ddl.insertFirst(20);
+		
+		ddl.displayForward();
+		System.out.println();
+		ddl.displayBackward();
 	}
 }

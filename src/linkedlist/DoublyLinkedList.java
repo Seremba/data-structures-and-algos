@@ -99,6 +99,22 @@ public class DoublyLinkedList {
 		length--;
 		return temp;
 	}
+	//  how to delete last node in a doubly linked list
+	public ListNode deleteLast() {
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		ListNode temp = tail;
+		if (head == tail) {
+			head = null;
+		} else {
+			tail.previous.next = null;
+		}
+		   tail = tail.previous;
+		temp.previous = null;
+		length--;
+		return temp;
+	}
 	public static void main(String[] args) {
 		DoublyLinkedList ddl = new DoublyLinkedList();
 		ddl.insertLast(1);
@@ -107,7 +123,7 @@ public class DoublyLinkedList {
 		ddl.insertLast(20);
 		
 		ddl.displayForward();
-		ddl.deleteFirst();
+		ddl.deleteLast();
 		System.out.println();
 		ddl.displayForward();
 	}

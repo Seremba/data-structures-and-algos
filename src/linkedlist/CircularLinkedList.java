@@ -53,10 +53,23 @@ public class CircularLinkedList {
 		
 		System.out.print(first.data);
 	}
-	
+	// how to insert a node at the beginning of a circular linked list
+	public void insertFirst(int data) {
+		ListNode temp = new ListNode(data);
+		if (last == null) {
+			last = temp;
+		} else {
+			temp.next = last.next;
+		}
+		last.next = temp;
+		length++;
+	}
 	public static void main(String[] args) {
 		CircularLinkedList csll = new CircularLinkedList();
-		csll.createCircularLinkedList();
+		// csll.createCircularLinkedList();
+		csll.insertFirst(10);
+		csll.insertFirst(15);
+		csll.insertFirst(25);
 		csll.display();
 	}
 }

@@ -64,12 +64,25 @@ public class CircularLinkedList {
 		last.next = temp;
 		length++;
 	}
+	//how to insert a node at the end of a circular linked list
+	public void insertLast(int data) {
+		ListNode temp = new ListNode(data);
+		if (last == null){
+			last = temp;
+			last.next= last;
+		} else {
+			temp.next = last.next;
+			last.next = temp;
+			last = temp;
+		}
+		length++;
+	}
 	public static void main(String[] args) {
 		CircularLinkedList csll = new CircularLinkedList();
 		// csll.createCircularLinkedList();
-		csll.insertFirst(10);
-		csll.insertFirst(15);
-		csll.insertFirst(25);
+		csll.insertLast(10);
+		csll.insertLast(12);
+		csll.insertLast(15);
 		csll.display();
 	}
 }

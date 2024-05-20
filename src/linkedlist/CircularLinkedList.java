@@ -25,7 +25,6 @@ public class CircularLinkedList {
 	public boolean isEmpty() {
 		return length == 0;
 	}
-	
 	public void createCircularLinkedList() {
 		ListNode first = new ListNode(1);
 		ListNode second = new ListNode(5);
@@ -39,8 +38,25 @@ public class CircularLinkedList {
 		
 		last = fourth;
 	}
+	// how to traverse and print a cicular linked list in Java
+	public void display() {
+		if (last == null) {
+			return;
+		}
+		
+		ListNode first = last.next;
+		
+		while (first != last) {
+			System.out.print(first.data + " ");
+			first = first.next;
+		}
+		
+		System.out.print(first.data);
+	}
 	
 	public static void main(String[] args) {
 		CircularLinkedList csll = new CircularLinkedList();
+		csll.createCircularLinkedList();
+		csll.display();
 	}
 }
